@@ -109,14 +109,14 @@ class FileService extends ExpressApp{
          //const buff=await concat(ipfs_file)
        //  buff.slice(0,2)
        const buuu=await addFile.addFile(this.client,'/ipfs/'+file.file_Details.ifps_id)
-        console.log(buuu[0].body)
+        console.log(buuu[0])
         const buf=ipfs_file
 
         for await (const itr of buf)
         {
           fs.appendFileSync("./store/de.jpeg",itr)
         }
-        fs.appendFileSync('./store/ff.jpeg',Buffer(buuu[0].body))
+        fs.appendFileSync('./store/ff.mp4',Buffer(buuu[0].body))
          //console.log(ipfs_file)
       //   const buf=concat(ipfs_file)
 //console.log(buf[0])
@@ -153,7 +153,7 @@ class FileService extends ExpressApp{
 }
     if(asMain) {
         let context = {
-            PORT : 3006,
+            PORT : 3007,
             options: 
             {
                 ipfsURL,
