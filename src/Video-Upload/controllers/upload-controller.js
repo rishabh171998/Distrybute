@@ -10,6 +10,7 @@ class UploadController
         this.node=context.ipfsClient,
         this.db=context.db,
         this.collection=context.collection
+        this.pschat=context.pubSubChat;
     }
 async uploadFile(req,res)
 {
@@ -21,7 +22,7 @@ async uploadFile(req,res)
     console.log("**********************************************************************************************************************************************************")
     console.log(this.options.controller.node)
 */
-    const {result,status}=await uploadService.uploadFile(file_details,this.db,'FILE',current_owner,this.options.controller.node);
+    const {result,status}=await uploadService.uploadFile(file_details,this.db,'FILE',current_owner,this.options.controller.node,this.options.controller.pschat);
     if(status!=500)
     {
         res.status(status).send(result);

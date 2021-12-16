@@ -34,6 +34,18 @@
     "request-wrapper": "^0.3.2",
     "sharp": "^0.29.3",
     "uuid": "^8.3.2",
-    "validator": "^13.6.0"
+    "validator": "^13.6.0",
+    "libp2p": "^0.30.12",
+    "libp2p-gossipsub": "^0.8.0",
+    "libp2p-mdns": "^0.15.0",
+    "libp2p-mplex": "^0.10.3",
+    "libp2p-noise": "^2.0.5",
+    "libp2p-secio": "^0.9.0",
+    "libp2p-tcp": "^0.15.4",
+    "libp2p-webrtc-star": "^0.21.2",
+    "libp2p-websockets": "^0.15.6",
+    "once": "^1.4.0",
+    "protons": "^2.0.1",
+    "wrtc": "^0.4.7"
   }
 }

@@ -6,9 +6,10 @@ const Hash = require('ipfs-only-hash')
 const path=require('path')
 const { nanoid } = require('nanoid');
 const { captureRejections } = require('events')
-const { JPEGTOMOZJPEG, JPEGTOMOZJPEGTEN } = require('../utils/compression-one')
+const { JPEGTOMOZJPEG, JPEGTOMOZJPEGTEN, VideoCompressionOneMP4 } = require('../utils/compression-one')
 const {deleteFile}=require('../utils/delete-file')
-
+const events=require('events');
+const eventEmitter=new events.EventEmitter();
 async function  uploadFile(file_details,database,database_collection,owner,node)
     { 
        try{
@@ -40,15 +41,17 @@ async function  uploadFile(file_details,database,database_collection,owner,node)
             return await createErrorResponse(500,'error.uploading.file','Error Uploading File');
         }
     }
-    async function  uploadFileTypeOne(file_details,database,database_collection,owner,node)
+    async function  uploadFileTypeOne(file_details,database,database_collection,owner,node,pschat)
     {  
        try{  
               const file=fs.readFileSync(path.join('store/', file_details.filename));
-               const sharper =await JPEGTOMOZJPEGTEN(file,file_details.filename);
-                const file_compressed=fs.readFileSync(path.join('store/', sharper.filePath));
+              const filePath= await VideoCompressionOneMP4('store/',file_details.filename);
+               console.log(filePath)
+               const file_compressed=fs.readFileSync(path.join('store/', filePath));
+            
                 const addFile=await node.add({path:file_details.filename,content:file_compressed})
                 const hash = await Hash.of(file_compressed)
-                const exif=await exifr.parse(file_compressed,true)
+               // const exif=await exifr.parse(file_compressed,true)
                 console.log(addFile)
                 let doc= 
             {
@@ -57,10 +60,12 @@ async function  uploadFile(file_details,database,database_collection,owner,node)
                 {  
                    decentra_id:hash,
                    multiple_owners:false,
-                   owners:[owner],
-                   exif:exif
+                   owners:[owner]
                 }}
                 let insertRes = await InsertDocument(database,database_collection,doc);
+                pschat.send(doc);
+               const messageReceived= await pschat.messageHandler;
+               console.log(messageReceived);
               await deleteFile('store/', file_details.filename)
              
                 await deleteFile('store/', sharper.filePath)
