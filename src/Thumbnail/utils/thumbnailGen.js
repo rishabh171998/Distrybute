@@ -6,7 +6,7 @@ const ThumbGen=async(decentra_id)=>
     try{
    await genThumbnail('http://localhost:8080/ipfs/'+decentra_id,'store/thumbnail-'+decentra_id+'.png','250x?');
    console.log(decentra_id);
-   const path='thumbnail-'+decentra_id+'-'+'.png';
+   const path='thumbnail-'+decentra_id+'.png';
     return path;
     }catch(err)
     {

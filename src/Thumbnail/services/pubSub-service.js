@@ -1,5 +1,7 @@
 const { deleteFile } = require('../utils/delete-file');
 const {ThumbGen}=require('../utils/thumbnailGen');
+const fs=require('fs')
+const path=require('path');
 async function  pubsubService(context,doc)
 {
  try{

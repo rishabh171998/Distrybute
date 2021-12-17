@@ -11,6 +11,7 @@ const asMain=(require.main === module);
 const fs=require('fs')
 const {validateJWT}=require('./middleware/token')
 const ipfsURL='http://localhost:5001'
+const { pubsubService}=require('./services/pubSub-service')
 const { initPubSubChat } = require('./utils/pubSubChat');
 async function initIPFS(context)
 {
@@ -42,7 +43,7 @@ async function initPSChat(context)
     context.messageHandler=async ({from,message})=>
     {
         console.log('hello')
-        await pubsubService(message.data);
+        await pubsubService(context,message.data);
     }
     
     return  initPubSubChat(context);
@@ -73,7 +74,7 @@ class IMAGEUploadService extends ExpressApp{
 
     if(asMain) {
         let context = {
-            PORT : process.env.IMAGE_UPLOAD_MS_PORT||3012,
+            PORT : process.env.IMAGE_UPLOAD_MS_PORT||3013,
             options: 
             {
                 ipfsURL,

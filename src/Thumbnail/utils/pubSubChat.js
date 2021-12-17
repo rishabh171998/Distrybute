@@ -6,6 +6,7 @@ const initPubSubChat=async (context)=>
     try{
     const pub= new pubsub(context.pubSubConnect,context.TOPIC,context.messageHandler)
     console.log(context.messageHandler)
+    console.log(context.TOPIC);
     context.pubSubChat=pub;
     console.log(pub);
     return context;   
