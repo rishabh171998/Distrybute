@@ -7,7 +7,7 @@ const {upload}=require('./Multer/multer-util');
 const { initMongoConnect } = require('./utils/mongoDB-util');
 const Node=require('./utils/libp2pPUBSUB')
 const asMain=(require.main === module);
-//const addFile=require('./FileHandling/addFile');
+//const addFile=require('./FileHandling/addFile');cd
 const fs=require('fs')
 const {validateJWT}=require('./middleware/token')
 const ipfsURL='http://localhost:5001'
@@ -66,7 +66,7 @@ class IMAGEUploadService extends ExpressApp{
 
     if(asMain) {
         let context = {
-            PORT : process.env.IMAGE_UPLOAD_MS_PORT||3009,
+            PORT : process.env.IMAGE_UPLOAD_MS_PORT||3010,
             options: 
             {
                 ipfsURL,

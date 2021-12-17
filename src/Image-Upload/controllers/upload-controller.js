@@ -11,6 +11,8 @@ class UploadController
         this.db=context.db,
         this.collection=context.collection
         this.libp2p=context.pubsubConnect
+        this.pubSubChat=context.pubSubChat
+        this.messageHandler=context.messageHandler
     }
 async uploadFile(req,res)
 {
@@ -22,7 +24,7 @@ async uploadFile(req,res)
     console.log("**********************************************************************************************************************************************************")
     console.log(this.options.controller.node)
 */
-    const {result,status}=await uploadService.uploadFile(file_details,this.db,'FILE',current_owner,this.options.controller.node,this.options.controller.libp2p);
+    const {result,status}=await uploadService.uploadFile(file_details,this.db,'FILE',current_owner,this.options.controller.node,this.options.controller.pubSubChat);
     if(status!=500)
     {
         res.status(status).send(result);

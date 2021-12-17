@@ -9,7 +9,7 @@ const { captureRejections } = require('events')
 const { JPEGTOMOZJPEG, JPEGTOMOZJPEGTEN } = require('../utils/compression-one')
 const {deleteFile}=require('../utils/delete-file')
 const exifr=require('exifr')
-async function  uploadFile(file_details,database,database_collection,owner,node,libp2p)
+async function  uploadFile(file_details,database,database_collection,owner,node,pubsub)
     { 
        try{
                 const file=fs.readFileSync(path.join('store/', file_details.filename));
@@ -25,17 +25,19 @@ async function  uploadFile(file_details,database,database_collection,owner,node,
                        decentra_id:hash_ipfs.cid,
                        multiple_owners:false,
                        owners:[owner],
+                       thumbnail:'QmTHktN6zpfeQPeHoV3NGgX7BFzBabWJyD6pRbbxshVwJh',
                        exif:exif
                     }}
                     
                 let insertRes = await InsertDocument(database,database_collection,doc);
-                libp2p.send
+              pubsub.send('QmTHktN6zpfeQPeHoV3NGgX7BFzBabWJyD6pRbbxshVwJh')
+              console.log(pubsub);
               await deleteFile('store/', file_details.filename)
                 if(!insertRes)
                 {
                     return await createErrorResponse(500,'error.inserting.data',"Error Inserting Data");
                 }
-                delete doc.file_Details.decentra_id
+             //   delete doc.file_Details.decentra_id.bytes()
                 return await createResponse(200,doc);
         }catch(err)
         {
