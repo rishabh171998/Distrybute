@@ -23,7 +23,7 @@
     "ipfs-http-client": "^53.0.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.2",
-    "mongoose": "^6.0.8",
+    "mongoose": "^6.4.6",
     "morgan": "^1.10.0",
     "request-wrapper": "^0.3.2",
     "uuid": "^8.3.2",
