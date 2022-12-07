@@ -38,7 +38,7 @@
     "sharp": "^0.29.3",
     "uuid": "^8.3.2",
     "validator": "^13.6.0",
-    "libp2p": "^0.30.12",
+    "libp2p": "^0.38.0",
     "libp2p-gossipsub": "^0.8.0",
     "libp2p-mdns": "^0.15.0",
     "libp2p-mplex": "^0.10.3",
