@@ -24,7 +24,7 @@
     "ipfs-cluster-api": "^0.0.9",
     "ipfs-http-client": "^53.0.1",
     "ipfs-only-hash": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "libp2p": "^0.30.12",
     "libp2p-gossipsub": "^0.12.1",
     "libp2p-mdns": "^0.18.0",
