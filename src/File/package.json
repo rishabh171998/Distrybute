@@ -23,7 +23,7 @@
     "ipfs-cluster-api": "^0.0.9",
     "ipfs-http-client": "^53.0.1",
     "ipfs-only-hash": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.8",
     "morgan": "^1.10.0",
